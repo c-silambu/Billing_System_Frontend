@@ -1,0 +1,231 @@
+/* ===============================
+   DASHBOARD LAYOUT
+================================ */
+.dashboard {
+  max-width: 1400px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 28px;
+}
+
+.loading-text {
+  font-size: 16px;
+  color: #6b7280;
+}
+
+/* ===============================
+   KPI CARDS (TOTAL INVOICE / SALES)
+================================ */
+.dashboard-cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 28px;
+}
+
+.card {
+  background: #ffffff;
+  border-radius: 18px;
+  padding: 20px 22px;   /* 👈 reduced */
+  height: 130px; 
+  width: 400px;       /* 👈 reduced */
+
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+
+  position: relative;
+  overflow: hidden;
+
+  box-shadow:
+    0 14px 30px rgba(0, 0, 0, 0.08),
+    inset 0 1px 0 rgba(255, 255, 255, 0.7);
+}
+
+
+/* Accent line */
+.card::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 16px;
+  bottom: 16px;
+  width: 5px;
+  background: linear-gradient(180deg, #6c5ce7, #00c6ff);
+  border-radius: 5px;
+}
+
+
+.card h4 {
+  font-size: 13px;   /* was 15 */
+  font-weight: 600;
+  color: #6b7280;
+  letter-spacing: 0.3px;
+}
+
+
+.card p {
+  font-size: 30px;   /* was 42 */
+  font-weight: 800;
+  color: #111827;
+}
+
+/* ===============================
+   CARD WRAPPERS (REAL CARD FEEL)
+================================ */
+.glass-box,
+.category-box,
+.recent-bills {
+  background: #ffffff;
+  border-radius: 18px;
+  padding: 24px;
+
+  box-shadow:
+    0 12px 30px rgba(0, 0, 0, 0.08),
+    inset 0 1px 0 rgba(255, 255, 255, 0.6);
+}
+
+/* Section titles */
+.glass-box h3,
+.category-box h4 {
+  margin-bottom: 16px;
+  font-size: 16px;
+  font-weight: 600;
+  color: #1f2937;
+}
+
+/* ===============================
+   CATEGORY SUMMARY
+================================ */
+.category-summary {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.category-title {
+  font-size: 16px;
+  font-weight: 600;
+  color: #1f2937;
+  margin-bottom: 16px;
+}
+
+/* ===============================
+   TABLE (PREMIUM STYLE)
+================================ */
+.styled-table {
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 0;
+  overflow: hidden;
+  border-radius: 12px;
+  background: #ffffff;
+}
+
+.styled-table thead th {
+  background: #f3f4f6;
+  padding: 14px 16px;
+  font-size: 13px;
+  font-weight: 600;
+  color: #374151;
+  text-align: left;
+}
+
+.styled-table tbody td {
+  padding: 14px 16px;
+  font-size: 14px;
+  color: #111827;
+  border-bottom: 1px solid #e5e7eb;
+}
+
+.styled-table tbody tr:not(.total-row):hover {
+  background: #f9fafb;
+}
+
+/* TOTAL ROW */
+.total-row {
+  background: #eef2ff;
+}
+
+.total-row td {
+  font-weight: 700;
+}
+
+/* ===============================
+   ANIMATIONS
+================================ */
+.fade-in {
+  animation: fadeInUp 0.6s ease forwards;
+  opacity: 0;
+}
+
+.delay-1 {
+  animation-delay: 0.1s;
+}
+.delay-2 {
+  animation-delay: 0.2s;
+}
+.delay-3 {
+  animation-delay: 0.3s;
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* ===============================
+   RESPONSIVE
+================================ */
+@media (max-width: 1024px) {
+  .card {
+    height: 160px;
+  }
+
+  .card p {
+    font-size: 36px;
+  }
+}
+
+@media (max-width: 768px) {
+  .dashboard {
+    gap: 20px;
+  }
+
+  .styled-table thead {
+    display: none;
+  }
+
+  .styled-table tr {
+    display: block;
+    margin-bottom: 14px;
+    background: #ffffff;
+    border-radius: 12px;
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.06);
+  }
+
+  .styled-table td {
+    display: flex;
+    justify-content: space-between;
+    border: none;
+    padding: 10px 12px;
+  }
+}
+
+@media (max-width: 480px) {
+  .card {
+    padding: 24px;
+    height: 150px;
+  }
+
+  .card p {
+    font-size: 32px;
+  }
+}

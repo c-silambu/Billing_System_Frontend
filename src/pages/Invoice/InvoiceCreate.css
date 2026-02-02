@@ -1,0 +1,255 @@
+/* =========================
+   PAGE BASE
+========================= */
+.invoice-page {
+  padding: 28px 32px;
+  background: #f5f7fb;
+  min-height: 100vh;
+  font-family: "Inter", system-ui, sans-serif;
+}
+
+.page-title {
+  font-size: 22px;
+  font-weight: 700;
+  margin-bottom: 18px;
+  color: #111827;
+}
+
+/* =========================
+   MAIN CARD
+========================= */
+.invoice-card {
+  background: #ffffff;
+  border-radius: 20px;
+  padding: 28px 32px;
+  max-width: 980px;
+  margin: auto;
+
+  box-shadow:
+    0 20px 45px rgba(0, 0, 0, 0.08),
+    inset 0 1px 0 rgba(255, 255, 255, 0.6);
+}
+
+/* =========================
+   SEARCH SECTION
+========================= */
+.search-section {
+  position: relative;
+  margin-bottom: 18px;
+}
+
+.search-input {
+  width: 100%;
+  padding: 14px 16px;
+  border-radius: 12px;
+  border: 1px solid #e5e7eb;
+  font-size: 14px;
+  outline: none;
+}
+
+.search-input:focus {
+  border-color: #6366f1;
+}
+
+/* Suggestions dropdown */
+.suggestions-list {
+  position: absolute;
+  top: 110%;
+  left: 0;
+  right: 0;
+  background: #ffffff;
+  border-radius: 12px;
+  box-shadow: 0 14px 30px rgba(0, 0, 0, 0.1);
+  max-height: 220px;
+  overflow-y: auto;
+  z-index: 10;
+}
+
+.suggestions-list li {
+  padding: 12px 16px;
+  font-size: 14px;
+  cursor: pointer;
+  display: flex;
+  justify-content: space-between;
+}
+
+.suggestions-list li:hover {
+  background: #f3f4f6;
+}
+
+.suggestions-list .price {
+  font-weight: 600;
+  color: #4f46e5;
+}
+
+/* =========================
+   QTY + ADD BUTTON
+========================= */
+.quantity-section {
+  display: flex;
+  gap: 14px;
+  margin-bottom: 22px;
+}
+
+.qty-input {
+  width: 120px;
+  padding: 12px;
+  border-radius: 10px;
+  border: 1px solid #e5e7eb;
+  font-size: 14px;
+}
+
+.add-btn {
+  background: linear-gradient(135deg, #6366f1, #4f46e5);
+  color: #ffffff;
+  border: none;
+  border-radius: 12px;
+  padding: 12px 22px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.add-btn:hover {
+  opacity: 0.95;
+}
+
+/* =========================
+   INVOICE TABLE
+========================= */
+.invoice-table {
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 0;
+  border-radius: 14px;
+  overflow: hidden;
+  margin-bottom: 20px;
+}
+
+.invoice-table thead th {
+  background: #f3f4f6;
+  padding: 14px;
+  font-size: 13px;
+  font-weight: 600;
+  color: #374151;
+  text-align: left;
+}
+
+.invoice-table tbody td {
+  padding: 14px;
+  font-size: 14px;
+  border-bottom: 1px solid #e5e7eb;
+}
+
+.invoice-table tbody tr:hover {
+  background: #f9fafb;
+}
+
+/* Remove button */
+.remove-btn {
+  background: #fee2e2;
+  color: #b91c1c;
+  border: none;
+  border-radius: 8px;
+  padding: 6px 10px;
+  cursor: pointer;
+  font-size: 14px;
+}
+
+.remove-btn:hover {
+  background: #fecaca;
+}
+
+/* =========================
+   TOTALS SECTION
+========================= */
+.totals-section {
+  margin-top: 10px;
+  padding-top: 16px;
+  border-top: 1px dashed #d1d5db;
+}
+
+.totals-section p {
+  display: flex;
+  justify-content: space-between;
+  font-size: 14px;
+  margin: 6px 0;
+}
+
+.totals-section h3 {
+  display: flex;
+  justify-content: space-between;
+  font-size: 18px;
+  margin-top: 12px;
+  font-weight: 800;
+  color: #111827;
+}
+
+/* =========================
+   GENERATE BUTTON
+========================= */
+.generate-btn {
+  margin-top: 22px;
+  width: 100%;
+  padding: 14px;
+  border-radius: 14px;
+  background: linear-gradient(135deg, #22c55e, #16a34a);
+  color: #ffffff;
+  font-size: 16px;
+  font-weight: 700;
+  border: none;
+  cursor: pointer;
+}
+
+.generate-btn:hover {
+  opacity: 0.95;
+}
+
+/* =========================
+   ANIMATIONS
+========================= */
+.fade-in {
+  animation: fadeIn 0.6s ease forwards;
+}
+
+.slide-up {
+  animation: slideUp 0.6s ease forwards;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes slideUp {
+  from {
+    transform: translateY(20px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+/* =========================
+   RESPONSIVE (LAPTOP & DOWN)
+========================= */
+@media (max-width: 1024px) {
+  .invoice-card {
+    padding: 22px;
+  }
+}
+
+@media (max-width: 768px) {
+  .quantity-section {
+    flex-direction: column;
+  }
+
+  .qty-input {
+    width: 100%;
+  }
+}
