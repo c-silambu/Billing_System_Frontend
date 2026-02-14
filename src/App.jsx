@@ -3,7 +3,7 @@ import Login from "./pages/login/Login";
 import AdminLayout from "./layouts/AdminLayout";
 import Products from "./pages/product/Product";
  import Summary from "./pages/Summary/Summary";
-import InvoiceCreate from "./pages/Invoice/InvoiceCreate";
+import InvoiceCreate from "./pages/invoice/InvoiceCreate";
 import Dashboard from "./pages/dashboard/Dashboard";
 import Register from "./pages/register/Register";
  
