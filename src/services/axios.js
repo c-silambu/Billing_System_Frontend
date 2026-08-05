@@ -1,11 +1,10 @@
 import axios from "axios";
 
-const localApiUrl = import.meta.env.VITE_LOCAL_API_URL || "http://localhost:3000";
-const hostedApiUrl = import.meta.env.VITE_API_URL || "";
+const apiUrl = import.meta.env.VITE_API_URL || "http://localhost:3000";
 
 const API = axios.create({
-  // Vite chooses localhost during development and the hosted API in production.
-  baseURL: (import.meta.env.DEV ? localApiUrl : hostedApiUrl).replace(/\/$/, ""),
+  // Local .env points to localhost; the hosting environment supplies its API URL.
+  baseURL: apiUrl.replace(/\/$/, ""),
   timeout: 15000,
 });
 
