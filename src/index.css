@@ -1,68 +1,57 @@
-:root {
-  font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
-  line-height: 1.5;
-  font-weight: 400;
+@import "tailwindcss";
 
-  color-scheme: light dark;
-  color: rgba(255, 255, 255, 0.87);
-  background-color: #242424;
-
-  font-synthesis: none;
-  text-rendering: optimizeLegibility;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+@theme {
+  --font-sans: "Inter", "Segoe UI", system-ui, sans-serif;
+  --color-brand-50: #eefdf8;
+  --color-brand-100: #d5f8eb;
+  --color-brand-500: #14b87a;
+  --color-brand-600: #0e9f69;
+  --color-brand-700: #0b7f57;
 }
 
-a {
-  font-weight: 500;
-  color: #646cff;
-  text-decoration: inherit;
-}
-a:hover {
-  color: #535bf2;
-}
-
-body {
-  margin: 0;
-  display: flex;
-  place-items: center;
-  min-width: 320px;
-  min-height: 100vh;
+@layer base {
+  * { box-sizing: border-box; }
+  html { background: #f6f8f7; }
+  body { margin: 0; min-width: 320px; min-height: 100vh; color: #17211d; background: #f6f8f7; overflow-x: hidden; }
+  button, input, select { font: inherit; }
+  button { cursor: pointer; }
+  button:disabled { cursor: not-allowed; }
 }
 
-h1 {
-  font-size: 3.2em;
-  line-height: 1.1;
+@layer components {
+  .page-shell { @apply mx-auto w-full max-w-[1500px] space-y-6; }
+  .page-heading { @apply text-2xl font-bold tracking-tight text-slate-900 sm:text-[28px]; }
+  .page-copy { @apply mt-1 text-sm text-slate-500; }
+  .panel { @apply rounded-2xl border border-slate-200/80 bg-white shadow-[0_1px_2px_rgba(16,24,40,.03),0_8px_24px_rgba(16,24,40,.04)]; }
+  .field { @apply h-11 w-full rounded-xl border border-slate-200 bg-white px-3.5 text-sm text-slate-900 outline-none transition placeholder:text-slate-400 focus:border-brand-500 focus:ring-4 focus:ring-brand-500/10; }
+  .primary-btn { @apply inline-flex h-11 items-center justify-center gap-2 rounded-xl bg-brand-600 px-4 text-sm font-semibold text-white shadow-sm transition hover:bg-brand-700 disabled:opacity-50; }
+  .secondary-btn { @apply inline-flex h-10 items-center justify-center gap-2 rounded-xl border border-slate-200 bg-white px-3.5 text-sm font-semibold text-slate-700 transition hover:bg-slate-50; }
+  .table-wrap { @apply overflow-x-auto; -webkit-overflow-scrolling: touch; scrollbar-width: thin; scrollbar-color: #cbd5e1 transparent; }
+  .data-table { @apply w-full min-w-[680px] border-collapse text-left; }
+  .data-table th { @apply border-b border-slate-200 bg-slate-50/80 px-5 py-3 text-xs font-semibold uppercase tracking-wider text-slate-500; }
+  .data-table td { @apply border-b border-slate-100 px-5 py-4 text-sm text-slate-700; }
+  .data-table tbody tr { @apply transition hover:bg-slate-50/70; }
 }
 
-button {
-  border-radius: 8px;
-  border: 1px solid transparent;
-  padding: 0.6em 1.2em;
-  font-size: 1em;
-  font-weight: 500;
-  font-family: inherit;
-  background-color: #1a1a1a;
-  cursor: pointer;
-  transition: border-color 0.25s;
-}
-button:hover {
-  border-color: #646cff;
-}
-button:focus,
-button:focus-visible {
-  outline: 4px auto -webkit-focus-ring-color;
-}
-
-@media (prefers-color-scheme: light) {
-  :root {
-    color: #213547;
-    background-color: #ffffff;
+@media (max-width: 640px) {
+  .page-shell { @apply space-y-4; }
+  .panel { @apply rounded-xl; }
+  .data-table th { @apply px-4 py-3 text-[10px]; }
+  .data-table td { @apply px-4 py-3; }
+  .table-wrap::after {
+    content: "Swipe to see more →";
+    display: block;
+    padding: .55rem 1rem;
+    color: #94a3b8;
+    background: #f8fafc;
+    font-size: .625rem;
+    text-align: right;
   }
-  a:hover {
-    color: #747bff;
-  }
-  button {
-    background-color: #f9f9f9;
-  }
+}
+
+@media print {
+  aside, header, button { display: none !important; }
+  main { padding: 0 !important; }
+  .lg\:pl-64 { padding-left: 0 !important; }
+  .panel { box-shadow: none; break-inside: avoid; }
 }

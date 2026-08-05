@@ -1,7 +1,9 @@
 import axios from "axios";
 
 const API = axios.create({
-  baseURL: "https://billing-system-backend-x91f.onrender.com",
+  // Empty in production means same-origin; set VITE_API_URL for a separate API host.
+  baseURL: (import.meta.env.VITE_API_URL || "").replace(/\/$/, ""),
+  timeout: 15000,
 });
 
 API.interceptors.request.use((req) => {

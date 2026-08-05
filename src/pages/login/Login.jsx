@@ -1,72 +1,15 @@
-import './login.css';
-import React, { useState } from 'react';
-import API from '../../services/axios';
-import { useNavigate } from 'react-router-dom';
+import { useState } from "react";
+import { ArrowRight, BarChart3, CheckCircle2, Eye, EyeOff, LoaderCircle, LockKeyhole, ReceiptText, User, WalletCards } from "lucide-react";
+import { Link, useNavigate } from "react-router-dom";
+import API from "../../services/axios";
 
 export default function Login() {
-  const [username, setUsername] = useState('');
-  const [password, setPassword] = useState('');
-  const navigate = useNavigate();
-
-  const handlelogin = async (e) => {
-    e.preventDefault();
-    try {
-      const myData = { username, password };
-      const res = await API.post('/auth/login', myData);
-      localStorage.setItem('token', res.data.token);
-      if (!res.data.token) return alert('Login failed');
-      navigate('/admin/dashboard');
-    } catch (err) {
-      alert(err.response?.data?.message || 'Login failed');
-    }
-  };
-
-  return (
-    <div className="login-page">
-      {/* Left gradient panel */}
-      <div className="login-left">
-        <div className="login-left-content">
-          <h1>Welcome Back</h1>
-          <p>
-            Manage your billing, invoices, and payments with a clean and modern
-            dashboard.
-          </p>
-        </div>
-      </div>
-
-      {/* Right form panel */}
-      <div className="login-right">
-        <form className="login-card" onSubmit={handlelogin}>
-          <h2 className="login-title">Sign In</h2>
-          <p className="login-subtitle">Enter your credentials</p>
-
-          <div className="input-group">
-            <label>Username</label>
-            <input
-              type="text"
-              placeholder="Enter username"
-              value={username}
-              onChange={(e) => setUsername(e.target.value)}
-              required
-            />
-          </div>
-
-          <div className="input-group">
-            <label>Password</label>
-            <input
-              type="password"
-              placeholder="Enter password"
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
-              required
-            />
-          </div>
-
-          <button type="submit" className="login-btn">
-            Login
-          </button>
-        </form>
-      </div>
-    </div>
-  );
+  const [username,setUsername]=useState(""); const [password,setPassword]=useState("");
+  const [show,setShow]=useState(false); const [loading,setLoading]=useState(false); const [error,setError]=useState("");
+  const navigate=useNavigate();
+  const submit=async e=>{e.preventDefault();setLoading(true);setError("");try{const {data}=await API.post("/auth/login",{username,password});if(!data.token)throw new Error("Login failed");localStorage.setItem("token",data.token);navigate("/admin/dashboard");}catch(err){setError(err.response?.data?.message||err.message||"Unable to sign in");}finally{setLoading(false);}};
+  return <main className="relative min-h-dvh overflow-hidden bg-[#f5f8f6] p-3 sm:p-6 lg:grid lg:grid-cols-[1.05fr_.95fr] lg:p-0">
+    <section className="relative hidden overflow-hidden bg-[#101915] p-10 text-white lg:flex lg:flex-col lg:justify-between xl:p-16"><div className="absolute -right-32 -top-32 size-[430px] rounded-full bg-brand-500/20 blur-3xl"/><div className="absolute -bottom-40 -left-24 size-[480px] rounded-full bg-emerald-800/30 blur-3xl"/><div className="relative flex items-center gap-3"><span className="grid size-11 place-items-center rounded-xl bg-brand-500"><WalletCards size={22}/></span><div><p className="font-bold">BillFlow</p><p className="text-xs text-slate-400">Smart billing workspace</p></div></div><div className="relative max-w-xl"><span className="mb-6 inline-flex rounded-full border border-white/10 bg-white/5 px-3 py-1.5 text-xs text-emerald-300">Made for growing businesses</span><h1 className="text-4xl font-bold leading-tight xl:text-5xl">Billing that feels<br/><span className="text-brand-500">effortlessly simple.</span></h1><p className="mt-6 max-w-md text-sm leading-7 text-slate-400">Manage products, create invoices and understand your sales from one beautifully organized workspace.</p><div className="mt-10 grid grid-cols-3 gap-3">{[[ReceiptText,"Quick invoices"],[BarChart3,"Sales insights"],[CheckCircle2,"Stock control"]].map(([Icon,text])=><div key={text} className="rounded-2xl border border-white/8 bg-white/[.04] p-4"><Icon className="mb-3 text-brand-500" size={20}/><p className="text-xs font-semibold">{text}</p></div>)}</div></div><p className="relative text-xs text-slate-600">© 2026 BillFlow · Local workspace</p></section>
+    <section className="relative flex min-h-[calc(100dvh-24px)] items-center justify-center rounded-3xl bg-white px-5 py-10 shadow-xl shadow-slate-200/50 lg:min-h-dvh lg:rounded-none lg:shadow-none sm:px-10"><div className="absolute left-6 top-6 flex items-center gap-2 lg:hidden"><span className="grid size-9 place-items-center rounded-xl bg-brand-600 text-white"><WalletCards size={18}/></span><b>BillFlow</b></div><form onSubmit={submit} className="w-full max-w-[410px]"><div className="mb-8"><p className="text-xs font-bold uppercase tracking-[.18em] text-brand-700">Welcome back</p><h2 className="mt-2 text-3xl font-bold tracking-tight text-slate-950">Sign in to your account</h2><p className="mt-2 text-sm text-slate-500">Enter your details to open your billing workspace.</p></div>{error&&<div className="mb-5 rounded-xl border border-red-200 bg-red-50 px-4 py-3 text-sm text-red-700">{error}</div>}<div className="space-y-4"><label className="block text-xs font-semibold text-slate-700">Username<div className="relative mt-2"><User className="absolute left-3.5 top-1/2 -translate-y-1/2 text-slate-400" size={17}/><input autoFocus autoComplete="username" className="field h-12 pl-10" value={username} onChange={e=>setUsername(e.target.value)} placeholder="Enter username" required/></div></label><label className="block text-xs font-semibold text-slate-700">Password<div className="relative mt-2"><LockKeyhole className="absolute left-3.5 top-1/2 -translate-y-1/2 text-slate-400" size={17}/><input autoComplete="current-password" type={show?"text":"password"} className="field h-12 px-10" value={password} onChange={e=>setPassword(e.target.value)} placeholder="Enter password" required/><button type="button" aria-label="Toggle password" onClick={()=>setShow(!show)} className="absolute right-3 top-1/2 -translate-y-1/2 text-slate-400">{show?<EyeOff size={17}/>:<Eye size={17}/>}</button></div></label></div><button disabled={loading} className="primary-btn mt-6 h-12 w-full">{loading?<LoaderCircle className="animate-spin" size={18}/>:<>Sign in <ArrowRight size={18}/></>}</button><p className="mt-7 text-center text-sm text-slate-500">New to BillFlow? <Link className="font-semibold text-brand-700 hover:text-brand-600" to="/register">Create an account</Link></p></form></section>
+  </main>;
 }
