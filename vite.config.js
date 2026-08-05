@@ -7,11 +7,11 @@ export default defineConfig({
   plugins: [react(), tailwindcss()],
   server: {
     proxy: {
-      '/auth': 'http://localhost:3000',
-      '/product': 'http://localhost:3000',
-      '/bill': 'http://localhost:3000',
-      '/dashboard': 'http://localhost:3000',
-      '/health': 'http://localhost:3000',
+      '/auth': 'http://localhost:5000',
+      '/product': 'http://localhost:5000',
+      '/bill': 'http://localhost:5000',
+      '/dashboard': 'http://localhost:5000',
+      '/health': 'http://localhost:5000',
     },
   },
 })

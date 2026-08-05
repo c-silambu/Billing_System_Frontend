@@ -6,7 +6,7 @@ services:
     staticPublishPath: ./dist
     envVars:
       - key: VITE_API_URL
-        sync: false
+        value: https://billing-system-backend-x91f.onrender.com
     routes:
       - type: rewrite
         source: /*

@@ -1,6 +1,10 @@
 import axios from "axios";
 
-const apiUrl = import.meta.env.VITE_API_URL || "http://localhost:3000";
+const apiUrl = import.meta.env.VITE_API_URL || (
+  import.meta.env.DEV
+    ? "http://localhost:5000"
+    : "https://billing-system-backend-x91f.onrender.com"
+);
 
 const API = axios.create({
   // Local .env points to localhost; the hosting environment supplies its API URL.
